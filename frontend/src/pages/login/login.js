@@ -4,6 +4,9 @@ const masterFields = document.getElementById('masterFields');
 const btnAction = document.getElementById('btnAction');
 const title = document.getElementById('title');
 
+// CAMBIO AQUÍ: La URL de tu backend en Render
+const API_URL = "https://posto-bar-refactor.onrender.com"; 
+
 let isFirstRun = false;
 
 loginForm.addEventListener('submit', async (e) => {
@@ -15,7 +18,10 @@ loginForm.addEventListener('submit', async (e) => {
         nombre: id('nombre').value
     };
 
-    const endpoint = isFirstRun ? '/api/auth/register-master' : '/api/auth/login';
+    // CAMBIO AQUÍ: Ahora usamos API_URL
+    const endpoint = isFirstRun 
+        ? `${API_URL}/api/auth/register-master` 
+        : `${API_URL}/api/auth/login`;
 
     try {
         const response = await fetch(endpoint, {
@@ -27,7 +33,6 @@ loginForm.addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (result.firstRun) {
-            // Activar modo "Crear Master"
             isFirstRun = true;
             title.innerText = "Configurar Usuario Master";
             masterFields.style.display = 'block';
@@ -35,12 +40,13 @@ loginForm.addEventListener('submit', async (e) => {
             alert("Sistema nuevo detectado. Por favor, cree su cuenta de administrador.");
         } else if (response.ok) {
             localStorage.setItem('user', JSON.stringify(result.user));
-            window.location.href = '../dashboard/index.html'; // Redirigir a la página inicial recomendada
+            window.location.href = '../dashboard/index.html'; 
         } else {
-            alert(result.error);
+            alert(result.error || "Error en el servidor");
         }
     } catch (err) {
-        console.error("Error:", err);
+        console.error("Error de conexión:", err);
+        alert("No se pudo conectar con el servidor. Verifica que Render esté 'Live'.");
     }
 });
 
