@@ -1,4 +1,5 @@
 // frontend/src/pages/login/login.js
+const API_URL = "https://posto-bar-refactor.onrender.com";
 const loginForm = document.getElementById('loginForm');
 const masterFields = document.getElementById('masterFields');
 const btnAction = document.getElementById('btnAction');
