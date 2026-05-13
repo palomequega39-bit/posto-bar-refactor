@@ -1,4 +1,3 @@
-// backend/src/controllers/auth.controller.js
 const authService = require('../services/auth.service');
 
 exports.login = async (req, res) => {
@@ -16,6 +15,7 @@ exports.login = async (req, res) => {
   }
 };
 
+// ASEGÚRATE QUE SE LLAME registerMaster (sin guion bajo)
 exports.registerMaster = async (req, res) => {
   try {
     const user = await authService.registerMaster(req.body);
