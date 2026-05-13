@@ -1,6 +1,6 @@
 const authService = require('../services/auth.service');
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const result = await authService.login(username, password);
@@ -15,12 +15,17 @@ exports.login = async (req, res) => {
   }
 };
 
-// ASEGÚRATE QUE SE LLAME registerMaster (sin guion bajo)
-exports.registerMaster = async (req, res) => {
+const registerMaster = async (req, res) => {
   try {
     const user = await authService.registerMaster(req.body);
     res.status(201).json({ message: "Usuario Master creado", user });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
+};
+
+// Exportación clara y sencilla
+module.exports = {
+  login,
+  registerMaster
 };
