@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Posto Bar - Login</title>
+    <link rel="stylesheet" href="../../styles/pages/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1 id="title">Bienvenido a Posto Bar</h1>
+        <form id="loginForm">
+            <div id="masterFields" style="display: none;">
+                <input type="text" id="nombre" placeholder="Nombre Completo">
+            </div>
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit" id="btnAction">Ingresar</button>
+        </form>
+        <p id="message"></p>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

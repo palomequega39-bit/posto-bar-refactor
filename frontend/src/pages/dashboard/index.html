@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Posto Bar</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; padding: 40px; }
+        .welcome-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 800px; margin: auto; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .step { border: 1px solid #ddd; padding: 20px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .step:hover { border-color: #007bff; background: #f0f7ff; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <div class="welcome-card">
+        <h1>¡Bienvenido, <span id="userName"></span>!</h1>
+        <p>Tu sistema está listo. Comienza configurando los datos básicos de tu restaurante:</p>
+        
+        <div class="grid">
+            <div class="step" onclick="location.href='../categorias/index.html'">
+                <h3>1. Categorías</h3>
+                <p>Crea secciones como "Bebidas", "Comidas", "Postres".</p>
+            </div>
+            <div class="step" onclick="location.href='../productos/index.html'">
+                <h3>2. Productos</h3>
+                <p>Carga los platos y bebidas de tu menú.</p>
+            </div>
+            <div class="step" onclick="location.href='../grupos/index.html'">
+                <h3>3. Grupos y Opciones</h3>
+                <p>Configura modificadores (ej: "Término de la carne", "Extras").</p>
+            </div>
+            <div class="step" onclick="location.href='../promociones/index.html'">
+                <h3>4. Promociones</h3>
+                <p>Crea el "2x1" o descuentos por día.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) window.location.href = '../login/index.html';
+        document.getElementById('userName').innerText = user.nombre;
+    </script>
+</body>
+</html>
